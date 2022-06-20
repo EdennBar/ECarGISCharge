@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+  <title>ecar</title>
+</head>
+
+<body style="color:#9fef00; background: linear-gradient(to top, #1A2332 15%, #141D2B 15%)">
+  <div id="body-container">
+    <h1> <i class="fas fa-gas-pump"></i>מערכת ECar</h1>
+
+    <div class="form-control">
+      <input id="search" type="text" placeholder="חיפוש במפה">
+    </div>
+
+    <div id=map></div>
+
+
+
+    <div class="wrapper">
+      <form class="searchForm" autocomplete="off" method="POST">
+        <div class="inline" style="width:300px;">
+          <input id="cityInput" type="text" name="cityName" placeholder="אנא בחר עיר">
+
+        </div>
+        <input type="submit" value=חיפוש>
+        <div>
+          <ul id="city-list"></ul>
+        </div>
+      </form>
+    </div>
+
+    <div class="container">
+
+      <div class="wrapper top">
+        <form id="Ashdod" hidden>
+          <select id="אשדוד" class="option" onchange="initMapAshdod()">
+            <option value="דפולטיבי" selected>בחר כתובת של עמדת טעינה</option>
+            <option value="עיריית_אשדוד">עיריית אשדוד</option>
+            <option value="ביג_אשדוד">ביג אשדוד</option>
+          </select>
+        </form>
+      </div>
+
+      <div class="wrapper top">
+        <form id="Herzeliya" hidden>
+          <select id="הרצליה" class="option" onchange="initMapHerzeliya()">
+            <option value="דפולטיבי" selected>בחר כתובת של עמדת טעינה </option>
+            <option value="בן_גוריון_22">בן גוריון 22</option>
+            <option value="המנופים_10">המנופים 10</option>
+            <option value="משכית_7">משכית 7</option>
+          </select>
+        </form>
+      </div>
+
+      <div class="wrapper top">
+        <form id="Hod_Hasaron" hidden>
+          <select id="הוד_השרון" class="option" onchange="initMapHodHasaron()">
+            <option value="דפולטיבי" selected>בחר כתובת של עמדת טעינה </option>
+            <option value="רמתיים_64">רמתיים 64</option>
+            <option value="יד_לבנים">יד לבנים</option>
+            <option value="פארק_4_העונות">פארק 4 העונות</option>
+          </select>
+        </form>
+      </div>
+
+      <div class="wrapper top">
+        <form id="Rehovot" hidden>
+          <select id="רחובות" class="option" onchange="initMapRehovot()">
+            <option value="דפולטיבי" selected>בחר כתובת של עמדת טעינה </option>
+            <option value="פארק_המדע">פארק המדע</option>
+            <option value="רמז_פינת_קיבוביץ">רמז פינת רמז פינת קיבוביץ</option>
+            <option value="גן_המייסדים">גן המייסדים</option>
+          </select>
+        </form>
+      </div>
+
+      <div class="wrapper top">
+        <form id="Haifa" hidden>
+          <select id="חיפה" class="option" onchange="initMapHaifa()">
+            <option value="דפולטיבי" selected>בחר כתובת של עמדת טעינה </option>
+            <option value="רכבת_חוף_הכרמל">רכבת חוף הכרמל</option>
+            <option value="הנשיא">הנשיא</option>
+            <option value="נמל_חיפה">נמל חיפה</option>
+          </select>
+        </form>
+      </div>
+
+      <div class="wrapper top">
+        <form id="Tel_Aviv" hidden>
+          <select id="תל_אביב" class="option" onchange="initMapTelAviv()">
+            <option value="דפולטיבי" selected>בחר כתובת של עמדת טעינה </option>
+            <option value="יגאל_אלון_82">יגאל אלון 82</option>
+            <option value="אחד_העם_14">אחד העם 14</option>
+            <option value="הברזל_20">הברזל 20</option>
+            <option value="הפלך_7">הפלך 7</option>
+            <option value="הארבעה_26">הארבעה 26</option>
+            <option value="רבניצקי_8">רבניצקי 8</option>
+          </select>
+        </form>
+      </div>
+
+      <div class="wrapper top">
+        <form id="Ramat_Gan" hidden>
+          <select id="רמת_גן" class="option" onchange="initMapRamatGan()">
+            <option value="דפולטיבי" selected>בחר כתובת של עמדת טעינה </option>
+            <option value="זאב_זבוטינסקי_33">זאב זבוטינסקי 33</option>
+            <option value="בן_גוריון_26">בן גוריון 26</option>
+            <option value="ביאליק_76">ביאליק 76</option>
+            <option value="המרכז_הרפואי_שיבא_תל_השומר">המרכז הרפואי שיבא, תל השומר</option>
+          </select>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9MJ4az4cnKMpMObeT6AMIngsEWF8jpyM&callback=showMap&libraries=places"></script>
+  <script src="https://kit.fontawesome.com/c6566f41fc.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
